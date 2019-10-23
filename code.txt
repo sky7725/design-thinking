@@ -1,0 +1,23 @@
+import pandas as pd 
+import numpy as np
+districts = ["台北","台北","台南","台南","高雄"]
+price = [1,2,3,4,5]
+age = [10,20,30,40,50]
+type(districts)
+data = []
+for i in range(5):
+    data +=[[districts[i],price[i],age[i]]]
+
+print(data)
+
+#描述性統計
+test = pd.DataFrame(data,index = ["buyer1","buyer2","buyer3","buyer4","buyer5"],columns = ["districts","price","age",])
+print(test)
+test.agg(['mean','median','max','min','var','std','skew','kurtosis'])
+
+
+data_sch = pd.crosstab(test.districts,test.price)
+data_sch = data_sch.div(data_sch.sum(1),axis = 0)
+
+#test.price.groupby(test.districts).agg(['mean']).plot(kind='barh')
+plot(test.price,test.kind='scatter')
